@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="shortuct icon" href="../../../static/images/logoB.png">
+
+    <title>候鳥來了-候鳥博士</title>
+    {% load static %}
+
+      <!-- icon css -->
+
+      <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous"> -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" href="../../../static/css/main.css" />
+      <link rel="stylesheet" type="text/css" href="{% static 'css/chat.css' %}" />
+
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.0/dist/js.cookie.min.js"></script>
+        <style>
+          .loadingMSG{
+            visibility: none;
+            position: absolute;
+          }
+          .loading {
+            visibility: none;
+            position: absolute;
+            width:calc(8*30px);
+            height: 50px;
+            display: flex;
+            color: #8d7958;
+            filter: drop-shadow(30px 25px 0 currentColor) drop-shadow(60px 0 0 currentColor) drop-shadow(120px 0 0 currentColor);
+            clip-path: inset(0 100% 0 0);
+            animation:a1 2s infinite steps(9);
+          }
+          .loading:before {
+            content: "";
+            width: 14px;
+            height: 12.3px;
+            background:currentColor;
+            clip-path: polygon(0 50%,30% 40%,100% 0,60% 40%,100% 50%,60% 60%,100% 100%,30% 60%);
+          }
+
+          @keyframes a1 {
+            100% {clip-path: inset(0 -21px 0 0)}
+          }
+
+      </style>
+  </head>
+
+  <body>
+    <script>
+      $(document).ready(function() {
+        document.getElementById("loadingID").style.visibility="hidden";
+        document.getElementById("loadingMSG").style.visibility="hidden";
+        // Send the form on enter keypress and avoid if shift is pressed
+        $('#prompt').keypress(function(event) {
+          if (event.keyCode === 13 && !event.shiftKey && !document.querySelector('#sendBTN').disabled) {
+            document.querySelector('#sendBTN').disabled = true;
+            document.querySelector('#sendBTN').textContent = "傳送中";
+            document.querySelector('#prompt').disabled = true;
+            document.querySelector('#prompt').placeholder = "";
+            document.getElementById("loadingID").style.visibility="visible";
+            document.getElementById("loadingMSG").style.visibility="visible";
+            event.preventDefault();
+            $('form').submit();
+          }
+        });
+        $('form').on('submit', function(event) {
+          document.querySelector('#sendBTN').disabled = true;
+          document.querySelector('#sendBTN').textContent = "傳送中";
+          document.querySelector('#prompt').disabled = true;
+          document.querySelector('#prompt').placeholder = "";
+          document.getElementById("loadingID").style.visibility="visible";
+          document.getElementById("loadingMSG").style.visibility="visible";
+
+          event.preventDefault();
+          // get the CSRF token from the cookie
+          var csrftoken = Cookies.get('csrftoken');
+
+          // set the CSRF token in the AJAX headers
+          $.ajaxSetup({
+            headers: { 'X-CSRFToken': csrftoken }
+          });
+          // Get the prompt
+          var prompt = $('#prompt').val();
+
+          var dateTime = new Date();
+          var day = dateTime.toLocaleDateString();
+          var time = dateTime.toLocaleTimeString('zh-TW');
+
+          // Add the prompt to the response div
+          $('#chat').append('<div class="response user">'+
+                      '<div class="msg-img" style="background-image: url(https://api.iconify.design/noto/man-raising-hand.svg)" ></div>'+
+                      '<div class="text" id="response_user">'+
+                      '<div class="msg-info">'+
+                        '<div class="msg-info-name" id="res_name_user">學生舉手發問</div>'+
+                        '<div class="msg-info-time" id="res_time_user">'+'('+ time + ')' +'</div>'+
+                      '</div>' + prompt +
+                    '</div>');
+          // Clear the prompt
+          $('#prompt').val('');
+          $.ajax({
+            url: '/openAI_gpt/',
+            type: 'POST',
+            data: {prompt: prompt},
+            dataType: 'json',
+            success: function(data) {
+              $('#chat').append('<div class="response gpt">'+
+                '<div class="msg-img" style="background-image: url(https://api.iconify.design/noto-v1/owl.svg)" ></div>'+
+                '<div class="text" id="response_gpt">'+
+                '<div class="msg-info">'+
+                  '<div class="msg-info-name" id="res_name_gpt">Dr.owl</div>'+
+                  '<div class="msg-info-time" id="res_time_gpt">'+'('+ time + ')' +'</div>'+
+                '</div>' + data.response +
+              '</div>');
+              document.getElementById("loadingID").style.visibility="hidden";
+              document.getElementById("loadingMSG").style.visibility="hidden";
+              document.querySelector('#sendBTN').disabled = false;
+              document.querySelector('#sendBTN').textContent = "傳送";
+              document.querySelector('#prompt').disabled = false;
+              document.querySelector('#prompt').placeholder = "請輸入你的問題...";
+
+					}
+				});
+			});
+		});
+	</script>
+
+  <!-- 導覽列 -->
+  <nav class="navbar navbar-expand-md  navbar-light fixed-top my-nav">
+    <a href="http://migratorybird.tw/">
+        <img
+          src="{% static "images/logoB.png" %}"
+          class="img-fluid ms-4 logo-style"
+          alt="候鳥logo"
+          title="回首頁"
+          style="font-size:0;"
+        />
+    </a>
+
+    <a href="http://migratorybird.tw/" class="nav-link">
+      <h1 class="navbar-brand" style="color : #25607a;">
+        <strong>候鳥來了</strong>
+      </h1>
+    </a>
+    <!-- 漢堡選單 -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent"
+      aria-controls="navbarToggleExternalContent" aria-expanded="false"  aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- 漢堡選單 Id -->
+    <div class="navbar-collapse collapse justify-content-end" id="navbarToggleExternalContent">
+      <ul class="navbar-nav">
+
+        <li class="nav-item">
+          <a href="http://migratorybird.tw/" class="nav-link"><i class="fa fa-home"></i>首頁</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="http://migratorybird.tw/realtime/" class="nav-link"><i class="fa-solid fa-dove"></i>即刻賞鳥</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="http://migratorybird.tw/birdlist/" class="nav-link"><i class="fa fa-book"></i>候鳥圖鑑</i></a>
+        </li>
+
+        <li class="nav-item">
+        <a href="http://migratorybird.tw/guide/" class="nav-link"><i class="fa fa-camera-retro"></i>賞鳥指南</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="http://migratorybird.tw/openAI_gpt/" class="nav-link text-nav"><i class="fa-solid fa-graduation-cap"></i>候鳥博士</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="http://migratorybird.tw/about/" class="nav-link "><i class="fa fa-address-book"></i>關於我們</a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+
+  <!--  -->
+  <div class="row my-5"></div>
+
+
+	<!-- 聊天室 -->
+		<section class="dialogue">
+			<header class="dialogue-header">
+				<span class="iconify"  data-icon="fluent:chat-bubbles-question-32-regular" data-width="32" data-height="32"></span>
+				<div class="dialogue-header-title">鳥類萬事通</div>
+			</header>
+
+			<main class="msger-chat">
+				<div class="col" id="chat">
+          <div class="response gpt">
+            <div class="msg-img" style="background-image: url(https://api.iconify.design/noto-v1/owl.svg)"></div>
+            <div class="text" id="response_gpt">
+                <div class="msg-info">
+                    <div class="msg-info-name" id="res_name_gpt">Dr.Owl</div>
+                    <!-- <div class="msg-info-time" id="res_time_gpt">(${time})</div> -->
+                </div>
+                  您問問題，我來回答 我是Dr.owl<br>
+                  今天有什麼鳥問題呀?
+            </div>
+          </div>
+        </div>
+			</main>
+
+			<form class="msger-inputarea" method="post">
+				{% csrf_token %}
+        <div id = "loadingMSG" class="loadingMSG" >鳥博士有時候很忙喔! 請耐心等候。</div>
+        <div id = "loadingID" class="loading" ></div>
+				<input type="text" class="msger-input" id="prompt" name="prompt" placeholder="請輸入你的問題...">
+				<button  id="sendBTN" name="sendBTN" type="submit" class="btn btn-success" style="margin-left: 10px;" function =" ">傳送</button>
+			</form>
+		</section>
+
+
+    <div class="row my-5"></div>
+    <footer>
+      <div class="container-fluid">
+        <div class="row footer-color" >
+            <div class="col text-center text-light small my-2">
+            <img
+              src="{% static "images/logo.png" %}"
+              class="img-fluid mx-2"
+              alt="候鳥logo"
+              style="height: 20px; width: 22px;"
+            />
+            候鳥來了 © 2023 All Rights Reserved.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> -->
+  </body>
+</html>

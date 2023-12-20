@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="shortuct icon" href="../../../static/images/logoB.png">
+
+    <title>候鳥來了-賞鳥指南</title>
+    {% load static %}
+
+    <!-- icon css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script> -->
+
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css" />
+  </head>
+
+
+  <body>
+    <!-- 導覽列 -->
+    <nav class="navbar navbar-expand-md  navbar-light fixed-top my-nav">
+      <a href="http://migratorybird.tw/">
+          <img
+            src="{% static "images/logoB.png" %}"
+            class="img-fluid ms-4 logo-style"
+            alt="候鳥logo"
+            title="回首頁"
+          />
+      </a>
+
+      <a href="http://migratorybird.tw/" class="nav-link">
+        <h1 class="navbar-brand" style="color : #25607a;">
+          <strong>候鳥來了</strong>
+        </h1>
+      </a>
+      <!-- 漢堡選單 -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent"
+        aria-controls="navbarToggleExternalContent" aria-expanded="false"  aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- 漢堡選單 Id -->
+      <div class="navbar-collapse collapse justify-content-end" id="navbarToggleExternalContent">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a href="http://migratorybird.tw/" class="nav-link"><i class="fa fa-home"></i>首頁</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="http://migratorybird.tw/realtime/" class="nav-link"><i class="fa-solid fa-dove"></i>即刻賞鳥</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="http://migratorybird.tw/birdlist/" class="nav-link"><i class="fa fa-book"></i>候鳥圖鑑</i></a>
+          </li>
+
+          <li class="nav-item">
+            <a href="http://migratorybird.tw/guide/" class="nav-link text-nav"><i class="fa fa-camera-retro"></i>賞鳥指南</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="http://migratorybird.tw/openAI_gpt/" class="nav-link"><i class="fa-solid fa-graduation-cap"></i>候鳥博士</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="http://migratorybird.tw/about/" class="nav-link "><i class="fa fa-address-book"></i></i>關於我們</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- my-3上下邊距各推 -->
+
+    <div class="row my-3"></div>
+
+      <!-- my-5 = 6rem的距離 -->
+      <div class="row my-5"></div>
+      <div class="container">
+        <div class="row my-5" style=" justify-content: center;">
+          <div class="Rectangle">
+            <span class="Rectangle-title">
+            <i class="fa-solid fa-shoe-prints fa-rotate-270"></i> 賞鳥三步驟</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 排版用60px -->
+      <div class="row my-4"></div>
+
+  <!-- 三步驟 -->
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <a class="guide-title" href="#read">01.<br>閱讀賞鳥須知<p></p>
+          <img src="{% static "images/guide01.png" %}" alt="01.閱讀賞鳥須知"  class="img-fluid">
+          </a>
+        </div>
+        <div class="col">
+          <a class="guide-title" href="#equip">02.<br>準備賞鳥裝備<p></p>
+          <img src="{% static "images/guide02.png" %}" alt="01.閱讀賞鳥指南" class="img-fluid">
+          </a>
+        </div>
+        <div class="col">
+          <a class="guide-title" href="#weather">03.<br>確認天氣狀況<p></p>
+          <img src="{% static "images/guide03.png" %}" alt="01.閱讀賞鳥指南"  class="img-fluid">
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+  <!-- 排版用 -->
+      <div class="row my-3"></div>
+
+
+  <!-- step1 guide -->
+  <!-- 排版用 -->
+  <div id="read" class="typesetting-org"></div>
+  <div class="typesetting-org"></div>
+
+  <!-- step1 guide -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="guide-box box-org">
+          <!-- read-title -->
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col text-start">
+                <div class="circle-container">
+                  <span class="circle"></span>
+                  <p class="circle-text">01. 閱讀賞鳥須知</p>
+                </div>
+              </div>
+            </div>
+            <!-- read-body -->
+            <div class="row">
+              <div class="col">
+                <p class="guide-text line-height">1. 尊重野生生物：了解並尊重賞鳥過程中的野生鳥類和其他動植物，避免干擾或打擾它們的生活。<br>
+                  2. 保護鳥類的生境：了解鳥類的棲息地和保護區，遵守當地的規定，並確保不對其造成破壞。<br>
+                  3. 賞鳥時的行為守則：採取適當的觀察行為，包括保持安靜、不靠近巢穴、不追趕鳥類等，以減少對它們的干擾。<br>
+                  4. 識別鳥類的技巧：學習如何辨認不同鳥類，包括外形特徵、叫聲和行為，這將有助於更準確地識別它們。<br>
+                  5. 了解賞鳥地點與季節：研究不同地點和季節的賞鳥時機，以提高觀察成功率並發現更多種類的鳥類。<br>
+                  6. 尊重當地文化：在賞鳥的過程中，尊重當地居民和文化，避免對當地社區造成不便或衝突。<br>
+                  7. 注意自身安全：確保你在賞鳥活動中的安全，特別是在陌生地區或特殊環境下，要注意安全風險。<br>
+                  8. 參與環保賞鳥：鼓勵參與環保賞鳥活動，保護鳥類和它們的生活環境，成為賞鳥的保護者。<br>
+                  9. 參與團體賞鳥活動：如果你是初學者或對特定地區的鳥類不熟悉，團體賞鳥可能是一個不錯的選擇。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- 排版用 -->
+    <div id="equip" class="typesetting-org"></div>
+    <div class="typesetting-whi"></div>
+
+    <!-- step2 equipment -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="guide-box box-whi">
+          <!-- equip-title -->
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col text-start">
+                <div class="circle-container">
+                  <span class="circle"></span>
+                  <p class="circle-text">02. 準備賞鳥裝備</p>
+                </div>
+              </div>
+            </div>
+            <!-- equip-body -->
+            <div class="row justify-content-start">
+              <div class="col">
+                <p class="guide-text line-height">1. 雙筒望遠鏡：確保攜帶高品質、適合並有背帶垂掛的雙筒望遠鏡，這是賞鳥的主要觀察工具，有助於看清遠處鳥類的細節。<br>
+                  2. 相機和筆記本：攜帶相機以捕捉精彩的鳥類瞬間，並準備筆記本記錄觀察到的鳥類種類、數量和行為等重要資訊。<br>
+                  3. 遮陽帽和舒適衣物：穿戴適合當地天氣的舒適長袖衣物，衣物顏色以米色、綠色、卡其色為主，並戴上遮陽帽以保護頭部和面部免受陽光曝曬。<br>
+                  4. 防蚊液和防曬霜：攜帶防蚊液和防曬霜，保護皮膚免受蚊蟲叮咬和日曬。<br>
+                  5. 水壺和輕食：帶足夠的水和輕便的食物，以保持身體補充水分和能量。<br>
+                  6. 望遠鏡支架或三腳架：如果計劃進行長時間的觀察，攜帶望遠鏡支架或三腳架有助於穩定觀察過程。<br>
+                  7. 地圖或GPS：帶上地圖或使用GPS，以確保在賞鳥過程中不迷路，並找到預定的觀察地點。<br>
+                  8. 雨具或防水袋：根據天氣預報，帶上雨具或防水袋，保護裝備免受雨水損害。<br>
+                  9. 適合的鞋襪：穿著合適的鞋子、襪子，以確保在不平坦的地形中行走舒適並避免滑倒。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- 排版用 -->
+  <div id="weather" class="typesetting-whi"></div>
+  <div class="typesetting-org"></div>
+
+  <!-- step3 weather -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="guide-box box-org">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col text-start">
+              <div class="circle-container">
+                <span class="circle"></span>
+                <p class="circle-text">03. 確認天氣狀況</p>
+              </div>
+            </div>
+          </div>
+          <!-- equip-body -->
+          <div class="row justify-content-start">
+            <div class="col">
+              <p class="guide-text line-height">1.氣溫：知道當天的氣溫是非常重要的，以便適應適當的穿著。如果是冷天，要保暖，如果是熱天，要注意防曬和保持涼爽。<br>
+                2.降雨機率： 看當天的降雨機率，以便做好防雨措施。如果有可能會下雨，準備雨具或選擇適當的室內活動。<br>
+                3.特殊天氣警報：檢查是否有特殊天氣警報，如暴風雨、颱風、大雪等。在面臨極端天氣情況時，應該謹慎行動，並可能需要改變原定的計畫。<br>
+                4.即時更新：天氣情況可能隨時變化，因此在您出門之前，最好再次確認天氣預報，以確保您有最新的資訊。<br>
+                </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 排版用 -->
+  <div class="typesetting-org"></div>
+
+
+
+
+    <footer>
+      <div class="container-fluid">
+        <div class="row footer-color">
+            <div class="col text-center text-light small my-2">
+            <img
+          src="{% static "images/logo.png" %}"
+          class="img-fluid mx-2"
+          alt="logo"
+          style="height: 20px; width: 22px;"
+          />
+            <!-- 地址：242新北市新莊區中正路510<br>
+            電話：+ 886 2 2905 2000 <br>
+            Email：migratory_birds@mail.fju.edu.tw <br> -->
+
+            候鳥來了 © 2023 All Rights Reserved.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+<!-- Optional JavaScript -->
+    <!-- jQuery first, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+  </body>
+</html>

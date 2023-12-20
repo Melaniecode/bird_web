@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <ul>
+
+        <li class="nav-item">
+            <a href="http://127.0.0.1:8000/" class="nav-link"><i class="fa fa-home"></i>首頁</a>
+        </li>
+
+        <li class="nav-item">
+            <a href="http://127.0.0.1:8000/realtime/" class="nav-link"><i class="fa-solid fa-dove"></i>即刻賞鳥</a>
+        </li>
+
+        <li class="nav-item">
+            <a href="http://127.0.0.1:8000/birdlist/" class="nav-link"><i class="fa fa-book"></i>候鳥圖鑑</i></a>
+        </li>
+
+        <li class="nav-item">
+            <a href="http://127.0.0.1:8000/guide/" class="nav-link text-danger"><i class="fa fa-camera-retro"></i>賞鳥須知</a>
+        </li>
+
+        <li class="nav-item">
+            <a href="http://127.0.0.1:8000/openAI_gpt/" class="nav-link"><i class="fa-solid fa-graduation-cap"></i>候鳥博士</a>
+        </li>
+
+        <li class="nav-item">
+            <a href="http://127.0.0.1:8000/about/" class="nav-link "><i class="fa fa-address-book"></i></i>關於我們</a>
+        </li>
+    </ul>
+
+
+
+    <h1>資料庫:{{error_message}} {{OK}}</h1>
+
+    <table border="1" >
+        <th>ID</th>
+        <th>鳥種名</th>
+        <th>科別</th>
+        <th>學名</th>
+        <th>英文名</th>
+        <th>別名</th>
+
+        <th>起始月份</th>
+        <th>離開月份</th>
+        <th>到來季節</th>
+        <th>棲息地</th>
+        <th>簡介</th>
+
+        <th>照片</th>
+        <th>照片來源</th>
+        <colgroup span="4"></colgroup>
+        {% for BirdModel in birds %}
+        <tr>
+            <td>{{BirdModel.id}} </td>
+            <td>{{BirdModel.name}} </td>
+            <td>{{BirdModel.familyName}} </td>     <!-- 科別名 -->
+            <td>{{BirdModel.scientificName}} </td> <!-- 學名 -->
+            <td>{{BirdModel.englishName}} </td>
+            <td>{{BirdModel.nickName}} </td>
+
+            <td>{{BirdModel.startMonth}} </td>
+            <td>{{BirdModel.endMonth}} </td>
+            <td>{{BirdModel.season}} </td>
+            <td>{{BirdModel.habitat}} </td>
+            <td>{{BirdModel.description}} </td>
+
+            <td><img src="{{BirdModel.image}}" style="width: 200px; height: 160px;"></td>
+            <td>{{BirdModel.photoby}} </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

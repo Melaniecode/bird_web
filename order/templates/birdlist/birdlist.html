@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="shortuct icon" href="../../../static/images/logoB.png">
+
+    <title>候鳥來了-候鳥圖鑑</title>
+    {% load static %}
+    {% load admin_list %}
+    <!-- icon css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script> -->
+
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css" />
+  </head>
+
+  <body>
+    <!-- 導覽列 -->
+    <nav class="navbar navbar-expand-md  navbar-light fixed-top my-nav">
+      <a href="http://migratorybird.tw/">
+          <img
+            src="{% static 'images/logoB.png' %}"
+            class="img-fluid ms-4 logo-style"
+            alt="候鳥logo"
+            title="回首頁"
+          />
+      </a>
+
+      <a href="http://migratorybird.tw/" class="nav-link">
+        <h1 class="navbar-brand" style="color : #25607a;">
+          <strong>候鳥來了</strong>
+        </h1>
+      </a>
+      <!-- 漢堡選單 -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent"
+        aria-controls="navbarToggleExternalContent" aria-expanded="false"  aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- 漢堡選單 Id -->
+      <div class="navbar-collapse collapse justify-content-end" id="navbarToggleExternalContent">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a href="http://migratorybird.tw/" class="nav-link"><i class="fa fa-home"></i>首頁</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="http://migratorybird.tw/realtime/" class="nav-link"><i class="fa-solid fa-dove"></i>即刻賞鳥</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="http://migratorybird.tw/birdlist/" class="nav-link text-nav"><i class="fa fa-book"></i>候鳥圖鑑</i></a>
+          </li>
+
+          <li class="nav-item">
+          <a href="http://migratorybird.tw/guide/" class="nav-link"><i class="fa fa-camera-retro"></i>賞鳥指南</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="http://migratorybird.tw/openAI_gpt/" class="nav-link"><i class="fa-solid fa-graduation-cap"></i>候鳥博士</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="http://migratorybird.tw/about/" class="nav-link "><i class="fa fa-address-book"></i></i>關於我們</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- my-3上下邊距各推 -->
+
+    <div class="row my-3"></div>
+
+      <!-- my-5 = 6rem的距離 -->
+      <div class="row my-5"></div>
+      <div class="container">
+        <div class="row my-5" style=" justify-content: center;">
+          <div class="Rectangle">
+            <span class="Rectangle-title">
+            <img src="../../../static/images/bird-image.png"
+            class="img-fluid mb-2"
+            style="width: 50px;
+            height: 52px;"
+            alt="候鳥圖鑑icon"
+            />候鳥圖鑑</span>
+          </div>
+        </div>
+      </div>
+      <!-- 熱門搜尋功能 -->
+      <script>
+        function checkInput() {
+          // 獲取值
+          const userInput = document.getElementById('bird-comName').value;
+
+          // 檢查是否為中文、英文、數字
+          if (!/^[A-Za-z0-9\u4e00-\u9fa5ㄅ-ㄩ˙ˊˇˋ\s]+$/.test(userInput) && userInput !== "") {
+            event.preventDefault();
+            Swal.fire({
+              icon: 'warning',
+              text: '請填入中、英文或數字',
+            }).then((result) => {
+              console.log(result);
+              if (result.isConfirmed) {
+                // 使用 event.preventDefault() 防止表單提交
+                document.querySelector("form[name='bird_form']").reset();
+              }
+            });
+            return false;
+          }
+          return true;
+        }
+
+
+        function displayText(buttonText) {
+          document.getElementById('bird-comName').value = buttonText;
+          checkInput(); // 檢查錯誤
+        }
+      </script>
+
+      <!-- 搜尋列 -->
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            <form method="post" name="bird_form" action="/birdlist/">
+              {% csrf_token %}
+              <label>
+                <input type="text" class="search-bar" id="bird-comName" name="bird_search" maxlength="25" placeholder="在尋找什麼呢?">
+              </label>
+              <input type="image" name='submitButton' src="../../../static/images/search_icon.svg" alt="search" width="30" height="26" onclick="if (checkInput()) displayText(buttonText)">
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col-auto my-2">
+            <!-- 使用 Unicode 表示 Emoji -->
+            <span>&#128293;熱門搜尋：</span>
+            <button class="btn btn-success hitsearch me-md-1" onclick="displayText('蒼鷺')">蒼鷺</button>
+            <button class="btn btn-success hitsearch me-md-1" onclick="displayText('關渡自然公園')">關渡自然公園</button>
+            <button class="btn btn-success hitsearch" onclick="displayText('11月')">11月</button>
+          </div>
+          <div class="col"></div>
+        </div>
+      </div>
+
+    {% for BirdModel in birds %}
+
+      {# 在第一次和後續每三次時執行(forloop.counter先減1 再除3看能否整除) #}
+      {% if forloop.first or forloop.counter|add:"-1"|divisibleby:3 %}
+    <div class="container-fluid">
+      <div class="row text-center my-5">
+        <div class="col-12 col-md-4 col-lg-2 offset-lg-3 my-3">
+          <img src="{{BirdModel.image}}" class="img-fluid productImg" alt="" title="看詳細介紹" data-bs-toggle="modal" data-bs-target="#bird{{forloop.counter}}" style="border-radius:50%;">
+          <h5 class="mt-1"><b>{{BirdModel.name}}</b></h5>
+        </div>
+
+          {# 最後一次或每三次時執行 #}
+        {% elif forloop.last or forloop.counter|divisibleby:3 %}
+        <div class="col-12 col-md-4 col-lg-2 my-3">
+          <img src="{{BirdModel.image}}" class="img-fluid productImg" alt="" title="看詳細介紹" data-bs-toggle="modal" data-bs-target="#bird{{forloop.counter}}" style="border-radius:50%;">
+          <h5 class="mt-1"><b>{{BirdModel.name}}</b></h5>
+        </div>
+      </div>
+    </div>
+
+        {% else %}
+        <div class="col-12 col-md-4 col-lg-2 my-3">
+          <img src="{{BirdModel.image}}" class="img-fluid productImg" alt="" title="看詳細介紹" data-bs-toggle="modal" data-bs-target="#bird{{forloop.counter}}" style="border-radius:50%;">
+          <h5 class="mt-1"><b>{{BirdModel.name}}</b></h5>
+        </div>
+      {% endif %}
+    {% endfor %}
+
+      {% for BirdModel in birds %}
+      <!-- Modal -->
+      <div class="modal fade" id="bird{{forloop.counter}}" tabindex="-1" aria-labelledby="bird{{forloop.counter}}" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="bird1"><b>{{BirdModel.name}}</b></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+              <img src="{{BirdModel.image}}" class="img-thumbnail" style="width: 500px;">
+              <table border="3" cellspacing="0" cellpadding="3" class="my-5">
+                <tr>
+                  <td class="text-orange">科別　　　　</td>
+                  <td>{{BirdModel.familyName}}</td>
+                </tr>
+                <tr>
+                  <td class="text-orange">別名</td>
+                  <td>{{BirdModel.nickName}}</td>
+                </tr>
+                <tr>
+                  <td class="text-orange">學名</td>
+                  <td>{{BirdModel.scientificName}}</td>
+                </tr>
+                <tr>
+                  <td class="text-orange">英文名</td>
+                  <td>{{BirdModel.englishName}}</td>
+                </tr>
+                <tr>
+                  <td class="text-orange">起始月份</td>
+                  <td>{{BirdModel.startMonth}}</td>
+                </tr>
+                <tr>
+                  <td class="text-orange">離開月份</td>
+                  <td>{{BirdModel.endMonth}}</td>
+                </tr>
+                <tr>
+                  <td class="text-orange">到來季節</td>
+                  <td>{{BirdModel.season}}</td>
+                </tr>
+                <tr>
+                  <td class="text-orange">棲息地</td>
+                  <td>{{BirdModel.habitat}}</td>
+                </tr>
+                <tr>
+                  <td class="text-orange">簡介</td>
+                  <td>{{BirdModel.description}} </td>
+                </tr>
+              </table>
+              圖片來源:</br><a href="{{BirdModel.photoby}}">{{BirdModel.photoby}}</a>
+            </div>
+
+            <div class="modal-footer"></div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    <footer>
+      <div class="container-fluid">
+        <div class="row footer-color">
+            <div class="col text-center text-light small my-2">
+            <img
+          src="../../../static/images/logo.png"
+          class="img-fluid mx-2"
+          alt="logo"
+          style="height: 20px; width: 22px;"
+          />
+            <!-- 地址：242新北市新莊區中正路510<br>
+            電話：+ 886 2 2905 2000 <br>
+            Email：migratory_birds@mail.fju.edu.tw <br> -->
+
+            候鳥來了 © 2023 All Rights Reserved.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+<!-- Optional JavaScript -->
+    <!-- jQuery first, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+  </body>
+</html>

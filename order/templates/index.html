@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="shortuct icon" href="../../static/images/logoB.png">
+
+    <title>候鳥來了-首頁</title>
+    {% load static %}
+
+      <!-- icon css -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+      <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+      <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+      <link rel="stylesheet" type="text/css" href="{% static 'css/weather_widget.css' %}" />
+    </head>
+
+  <body onload="current_time()">
+  <!-- loading畫面 -->
+      <!-- <script>
+      $(document).ready(function () {
+          setTimeout(function () {
+              $(".loading-wrapper").fadeOut(500);
+          }, 800);
+      });
+    </script>
+
+    <div class="loading-wrapper"><img src="../../static/images/loading1.gif">
+        <div></br><b>努力載入ing...</b></div>
+    </div> -->
+
+
+
+    <script>
+      var Today=new Date();
+      function current_time(){
+      NowDate=new Date();
+      y=Today.getFullYear();
+      Mon=Today.getMonth()+1;
+      day=Today.getDate();
+
+      h=NowDate.getHours();
+      m=NowDate.getMinutes();
+      m = m < 10 ? '0' + m : m;
+      h = h < 10 ? '0' + h : h;
+      document.getElementById('current').innerHTML = y+ "年" + Mon + "月" + day + "日 "+h+':'+m+'';
+      setTimeout('current_time()',60000);
+      }
+    document.write();
+      </script>
+
+    <!-- 導覽列 -->
+    <nav class="navbar navbar-expand-md  navbar-light fixed-top my-nav">
+      <a href="http://migratorybird.tw/">
+          <img
+            src="{% static "images/logoB.png" %}"
+            class="img-fluid ms-4 logo-style"
+            alt="候鳥logo"
+            title="回首頁"
+            style="font-size:0;"
+          />
+      </a>
+
+      <a href="http://migratorybird.tw/" class="nav-link">
+        <h1 class="navbar-brand" style="color : #25607a;">
+          <strong>候鳥來了</strong>
+        </h1>
+      </a>
+      <!-- 漢堡選單 -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent"
+        aria-controls="navbarToggleExternalContent" aria-expanded="false"  aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- 漢堡選單 Id -->
+      <div class="navbar-collapse collapse justify-content-end" id="navbarToggleExternalContent">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a href="http://migratorybird.tw/" class="nav-link text-nav"><i class="fa fa-home"></i>首頁</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="http://migratorybird.tw/realtime/" class="nav-link"><i class="fa-solid fa-dove"></i>即刻賞鳥</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="http://migratorybird.tw/birdlist/" class="nav-link"><i class="fa fa-book"></i>候鳥圖鑑</i></a>
+          </li>
+
+          <li class="nav-item">
+          <a href="http://migratorybird.tw/guide/" class="nav-link"><i class="fa fa-camera-retro"></i>賞鳥指南</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="http://migratorybird.tw/openAI_gpt/" class="nav-link"><i class="fa-solid fa-graduation-cap"></i>候鳥博士</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="http://migratorybird.tw/about/" class="nav-link "><i class="fa fa-address-book"></i></i>關於我們</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+    <!-- 首頁介紹 -->
+    <div class="row my-2"></div>
+    <div class="container-fluid banner">
+        <!-- my-5上下邊距各推 3rem(48px)的距離 -->
+        <div class="row my-5"></div>
+        <div class="row my-5"></div>
+        <!-- <div class="row my-3"></div> -->
+        <div class="container">
+          <div class="row">
+            <div class="col-1"></div>
+            <div class="col-auto">
+              <h1>
+                <b>發現<span class="text-Blue">候鳥</span>的<span class="text-Blue">美麗</span>
+                  <br>感受<span class="text-Blue">大自然的魅力</span>
+                </b>
+              </h1>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row" >
+            <div class="col-1"></div>
+            <div class="col-auto">
+              <p>
+                探索候鳥世界，深入了解不同種類的候鳥，以及牠們生活的環境與習性。<br />「候鳥來了」為你提供各個季節觀察候鳥的最佳地點與時間，<br />
+                幫助您更順利地進行候鳥觀察活動。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <div valign="top" class=" offset-sm-2 my-3 border-bottom ">
+          <h3><i class="fa fa-cloud-sun"></i> 氣象資訊 <i class="fa fa-umbrella"></i></h3>
+      </div>
+      <div class="weather">
+        <div class="container_weather">
+          <div class="weather-side">
+            <div class="weather-gradient"></div>
+            <div class="date-container">
+              <h2 class="date-dayname" id = "location"><i class="fa-solid fa-location-dot" style="margin: 0 15px 0 0 ;"></i></i>{{weather_msg.location}}</h2>
+              <span class="date-day" >
+                <i class="fa-regular fa-clock" style="margin: 5px 10px 0 0 ;"></i><span id="current"></span>
+              </span>
+            </div>
+            <div class="weather-container">
+              <div class="weather-item" style="height: 100px; width: 100px; margin : 0 10px 0 0;"></div>
+              <h1 class="weather-temp" id = "min_tem">{{weather_msg.min_tem}}°C</h1>
+              <h3 class="weather-desc" id = "weather_state">{{weather_msg.weather_state}}</h3>
+              <h3 class="weather-desc-small" id = "rain_prob"><i class="fa fa-cloud-showers-heavy" style="margin: 0 10px 0 0 ;"></i>{{weather_msg.rain_prob}} %</h3>
+              <h3 class="weather-desc-small" id = "comfort"><i class="fa-regular fa-face-smile" style="margin: 0 10px 0 0 ;"></i>{{weather_msg.comfort}}</h3>
+              <h3 class="weather-desc-small">
+                <i class="fa-solid fa-temperature-three-quarters" style="margin: 0 10px 0 0 ;"></i>
+                <span id = "max_tem">{{weather_msg.min_tem}}°C ~ </span>
+                <span id = "max_tem">{{weather_msg.max_tem}}°C</span>
+                <span style="margin: 0 0 0 100px;"></span>
+                <span><button type="submit" class="btn btn-outline-dark btn-sm" onclick="location.href='https://www.cwa.gov.tw/V8/C/'" style="margin-left: 10px;">more</button></span>
+              </h3>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 天氣區塊 -->
+      <!-- 
+      <div class="container-fluid">
+        <div valign="top" class="col-12 col-sm-8 offset-sm-2 my-3 border-bottom ">
+          <h3><i class="fa fa-cloud-sun"></i> 氣象資訊 <i class="fa fa-umbrella"></i></h3>
+        </div>
+
+        <div class="container-fluid">
+          <div class="offset-sm-2 weather-box">
+            <div class="">
+              <ul class="square" style="list-style-type: none;">
+                <li class="mb-3 mt-1">
+                  <h4 id = "">{{weather_msg.location}}</h4>
+                </li>
+                  <li class="mb-3 mt-1">
+                    <span id="current"></span>
+                </li>
+                <li id = "weather_state">{{weather_msg.weather_state}}</li>
+                -->
+                <!-- weather-item 為js傳回的對應天氣圖 -->
+                <!--
+                <li class="weather-item" style="height: 100px; width: 100px;">
+                </li>
+                <li class="mb-3">
+                  <h1><i class="fa-solid fa-temperature-three-quarters"></i><span style="Font-size:24px;">　{{weather_msg.min_tem}}°C - {{weather_msg.max_tem}}°C</span></h1>
+                </li>
+                <li class="mb-4">
+                  <h4><i class="fa fa-cloud-showers-heavy"><span style="font-family: '標楷體';" id = "rain_prob">　{{weather_msg.rain_prob}}%</span></i></h4>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    -->
+      <!-- 天氣圖示判斷js -->
+      <script>
+        function setWeatherImage(weather, imgElement) {
+          switch (weather) {
+            case '晴天':
+              imgElement.src = '{% static "images/weather icon/Sun_day.svg" %}';
+              break;
+            default:
+              // else
+              if (weather.includes('雷'||'雨')) {
+                imgElement.src = '../../static/images/weather icon/rainy+thunder_day.svg';
+              }else if(weather.includes('雨'||'晴')){
+                imgElement.src = '../../static/images/weather icon/rainy+sun_day.svg';
+              }else if(weather.includes('晴'||'霧')){
+                imgElement.src = '../../static/images/weather icon/Sun+fog_day.svg';
+              }else if(weather.includes('雷')){
+                imgElement.src = '../../static/images/weather icon/thunder_day.svg';
+              }else if(weather.includes('雨')){
+                imgElement.src = '../../static/images/weather icon/rainy_day.svg';
+              }else if(weather.includes('多雲')){
+                imgElement.src = '../../static/images/weather icon/cloudy_day.svg';
+              }else{
+                imgElement.src = '../../static/images/weather icon/cloudy_day.svg';
+              }
+          }
+        }
+      const weatherState = '{{weather_msg.weather_state}}';
+
+      // 取得對應天氣的元素
+      const weatherItem = document.querySelector('.weather-item');
+
+      // 創建圖片元素
+      const imgElement = document.createElement('img');
+      //新增class元素 (img-fluid圖自動縮放 ms-5左推)
+      imgElement.classList.add('img-fluid', 'ms-5');
+      imgElement.alt = weatherState;
+      imgElement.title = weatherState;
+
+      //圖片元素插入到天氣元素中
+      weatherItem.appendChild(imgElement);
+
+      // 呼叫函式以設定天氣圖片
+      setWeatherImage(weatherState, imgElement);
+    </script>
+
+    <div class="row my-2"></div>
+
+    <footer>
+      <div class="container-fluid">
+        <div class="row footer-color">
+            <div class="col text-center text-light small my-2">
+            <img
+              src="{% static "images/logo.png" %}"
+              class="img-fluid mx-2"
+              alt="候鳥logo"
+              style="height: 20px; width: 22px;"
+            />
+            候鳥來了 © 2023 All Rights Reserved.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!--get browser's location-->
+    <!--
+    <script>
+      //Continuously take the position
+      function initMap() {
+        if (navigator.geolocation) {
+          navigator.geolocation.watchPosition(
+            (position) => {
+              //console.log(position.coords);
+              const pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              };
+              console.log(pos)
+              posJson = JSON.stringify(
+                { lat: pos.lat,
+                  lng: pos.lng});
+              $.ajax({
+                url: "/getMyloc/",
+                data: posJson,
+                dataType: "json",
+                headers: { "X-CSRFToken": "{{ csrf_token }}" },
+                contentType: 'application/json; charset=UTF-8',
+                type: "POST",
+                traditional: true,    // add when we pass list, dict
+                success: function (response) {
+                  console.log(response.message)
+                  if(response.message === 'success'){
+                    // document.getElementById("startTime").innerHTML = response.weather_msg.startTime
+                    document.getElementById("location").innerHTML = response.weather_msg.location
+                    document.getElementById("weather_state").innerHTML = response.weather_msg.weather_state
+                    document.getElementById("rain_prob").innerHTML = response.weather_msg.rain_prob+'%'
+                    document.getElementById("comfort").innerHTML = response.weather_msg.comfort
+                    document.getElementById("max_tem").innerHTML = response.weather_msg.max_tem+'°C'
+                    document.getElementById("min_tem").innerHTML = response.weather_msg.min_tem+'°C'
+                  }
+
+                },
+                error: function (response) {
+                  if(response.message !== 'success')
+                    console.log('Error');
+                }
+            });
+            },
+            () => {
+              handleLocationError(true);
+            }
+          );
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false);
+        }
+      }
+      function handleLocationError(browserHasGeolocation) {
+        if(browserHasGeolocation)
+          window.alert("Error: 地理定位服務失敗，請重新嘗試或是確認網路服務是否成功連線。");
+        else
+          window.alert( "Error: 您的瀏覽器不支持定位功能，請換成其他瀏覽器。");
+      }
+
+    </script>
+
+    <div id="map"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{key}}&callback=initMap"async="" defer=""></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    -->
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+  </body>
+</html>
